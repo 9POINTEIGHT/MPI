@@ -42,13 +42,20 @@ out_seq <- AF_Seq(examplePovertydf, g = "Region", k = 3)
 
 Output will be *list of lists* separated into group, and each list contains
 * groupname 
-* H (Uncensored head count) 
-* A (Average deprivation share among row)
-* M0 (Multidimensional Poverty Index) 
 ```{r, echo=FALSE}
 out_seq[[1]]$groupname
+```
+
+* H (Uncensored head count is the proportion of the population that is multidimensionally deprived) 
+```{r, echo=FALSE}
 out_seq[[1]]$H
+```
+* A (Average deprivation share among row)
+```{r, echo=FALSE}
 out_seq[[1]]$A
+```
+* M0 (Multidimensional Poverty Index) 
+```{r, echo=FALSE}
 out_seq[[1]]$M0
 ```
 * DimentionalContribution (Dimensional contributions) 
