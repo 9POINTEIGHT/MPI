@@ -14,7 +14,7 @@ vignette: >
 
 ```{r warning=F, message=F}
 library(MPI)
-library(kableExtra)
+library(kableExtra) 
 ```
 
 ### Loading Data
