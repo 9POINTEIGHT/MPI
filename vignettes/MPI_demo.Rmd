@@ -1,0 +1,67 @@
+---
+title: "MPI_demo"
+author: "Kittiya Kukiattikun"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{MPI_demo}
+  %\VignetteEngine{knitr::knitr}
+  %\VignetteEncoding{UTF-8}
+  
+---
+
+## Simple Simulation
+
+```{r warning=F, message=F}
+library(MPI)
+library(kableExtra)
+```
+
+### Loading Data
+
+`MPI::examplePovertydf` is a simulation poverty data frame contains 16 indicators column which 1 means failed and 0 means passed
+
+And forth administrative regions of France in Region column
+
+```{r}
+data(examplePovertydf)
+```
+```{r example, results = 'asis', echo = FALSE}
+kable(head(examplePovertydf, n = 3), 
+      "html", 
+      col.names = gsub("[.]", " ", names(examplePovertydf))) %>% 
+  kable_styling()
+```
+
+### Calculation
+
+For calculating MPI using `AF_Seq` (for sequential run) or `AF_Par` (for parallel run)
+```{r}
+out_seq <- AF_Seq(examplePovertydf, g = "Region", k = 3)
+```
+
+Output will be *list of lists* separated into group, and each list contains
+* groupname 
+* H (Uncensored head count) 
+* A (Average deprivation share among row)
+* M0 (Multidimensional Poverty Index) 
+```{r, echo=FALSE}
+out_seq[[1]]$groupname
+out_seq[[1]]$H
+out_seq[[1]]$A
+out_seq[[1]]$M0
+```
+* DimentionalContribution (Dimensional contributions) 
+```{r outt1, results = 'asis', echo=FALSE}
+kable(out_seq[[1]]$DimentionalContribution, 
+            "html",
+            col.names = gsub("[.]", " ", names(out_seq[[1]]$DimentionalContribution))) %>%
+  kable_styling()
+```
+* pov_df (poverty data frame) 
+```{r outt2, results = 'asis', echo=FALSE}
+kable(out_seq[[1]]$pov_df, 
+            "html",
+            col.names = gsub("[.]", " ", names(out_seq[[1]]$pov_df))) %>%
+  kable_styling()
+```

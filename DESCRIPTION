@@ -1,0 +1,33 @@
+Package: MPI
+Type: Package
+Title: Computation of Multidimensional Poverty Index (MPI)
+Version: 0.1.0
+Authors@R: c(
+  person(given = "Kittiya", 
+         family = "Kukiattikun", 
+         role = c("aut", "cre"),
+         email = "kittiya.contact@gmail.com"),
+  person(given = "Chainarong",
+         family = "Chainarong",
+         role = "aut",
+         email = "grandca@gmail.com"
+         ))
+Description: Computing package for Multidimensional Poverty Index (MPI) using Alkire-Foster method. Please see "Alkire, S., Foster, J. E., Seth, S., Santos, M. E., Roche, J. M., and Ballon, P. (2015). Multidimensional Poverty Measurement and Analysis, Oxford: Oxford University Press, ch. 5." for The Alkire-Foster methodology.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Depends:  R (>= 3.4.0)
+Imports:
+  dplyr,
+  tidyr,
+  utils,
+  doParallel,
+  foreach,
+  purrr
+Suggests: 
+  knitr, 
+  rmarkdown,
+  markdown,
+  kableExtra
+VignetteBuilder: knitr
+RoxygenNote: 7.1.2
