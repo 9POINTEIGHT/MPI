@@ -30,7 +30,8 @@ First we will use simulation poverty data from build-in package. Which contains 
 ```r
 MPI::examplePovertydf
 ```
-<img src="https://github.com/9POINTEIGHT/MPI/tree/master/man/FIG/examplePovertydf.JPG" width="600">
+
+<img src="https://github.com/9POINTEIGHT/MPI/blob/master/man/FIG/examplePovertydf.JPG?raw=true">
 
 We use the following function to compute MPI.
 ```r
@@ -59,14 +60,14 @@ Output will be `list of lists` separated into group, and each list contains
 
 * `DimentionalContribution` Dimensional contributions denotes the magnitude of each indicators impact on MPI.
 
-<img src="https://github.com/9POINTEIGHT/MPI/tree/master/man/FIG/DimentionalContribution.JPG" width="250">
+<img src="https://github.com/9POINTEIGHT/MPI/blob/master/man/FIG/DimentionalContribution.JPG?raw=true" width="250">
 
 * `pov_df` poverty data frame 
   * `Cvector` is total deprived indicators.
   * `IsPoverty` is a binary variable with only 1 and 0, with 1 indicating that person does not meet the threshold(poor person) and 0 indicating the opposite.
   * `Intensity` , The intensity of a deprived indication among impoverished people is computed by dividing the number of deprived indicators by the total number of indicators.
 
-<img src="https://github.com/9POINTEIGHT/MPI/tree/master/man/FIG/pov_df.JPG" width="1500">
+<img src="https://github.com/9POINTEIGHT/MPI/blob/master/man/FIG/pov_df.JPG?raw=true" width="1500">
 
 Citation
 ----------------------------------------------------------------------------------
