@@ -12,8 +12,10 @@ Authors@R: c(
          role = "aut",
          email = "grandca@gmail.com"
          ))
-Description: Computing package for Multidimensional Poverty Index (MPI) using Alkire-Foster method. Please see "Alkire, S., Foster, J. E., Seth, S., Santos, M. E., Roche, J. M., and Ballon, P. (2015). Multidimensional Poverty Measurement and Analysis, Oxford: Oxford University Press, ch. 5." for The Alkire-Foster methodology.
+Description: Computing package for Multidimensional Poverty Index (MPI) using Alkire-Foster method. Given N individuals, each person has D indicators of deprivation, the package compute MPI value to represent the degree of poverty in a population. The inputs are 1) an N by D matrix, which has the element (i,j) represents whether an individual i is deprived in an indicator j (1 is deprived and 0 is not deprived), and 2) the deprivation threshold.  The main output is the MPI value, which has the range between zero and one. MPI value is approaching one if almost all people are deprived in all indicators, and it is approaching zero if almost no people are deprived in any indicator.  Please see Alkire S., Chatterjee, M., Conconi, A., Seth, S. and Ana Vaz (2014) <doi:10.35648/20.500.12413/11781/ii039> for The Alkire-Foster methodology.
 License: MIT + file LICENSE
+URL: https://github.com/9POINTEIGHT/MPI
+BugReports: https://github.com/9POINTEIGHT/MPI/issues
 Encoding: UTF-8
 LazyData: true
 Depends:  R (>= 3.4.0)

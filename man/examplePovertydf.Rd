@@ -7,7 +7,7 @@
 \format{
 A data frame with 30 rows of individuals and 17 variables:
 \describe{
-    The first 16 variables is indicator where any indicator is equal to 1 means failed and 0 means passed
+    The first 16 variables are deprivation indicators where any indicators is equal to 1 means deprived and 0 means not deprived.
     \itemize{
         \item{Access.to.health.care}{}
         \item{Child.Mortality}{}
@@ -21,7 +21,7 @@ A data frame with 30 rows of individuals and 17 variables:
         \item{School.attendance}{}
         \item{Years.of.education}{}
     }
-    The last variable is simulated region associated with the row
+    The last variable is simulated region from France (forth-level administrative division).
     \itemize{
         \item{Region}{}
     }

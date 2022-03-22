@@ -18,13 +18,13 @@ AF_Seq(df, g = NULL, w = NULL, k = 1)
 \value{
 returns a \code{list} of \code{list} contains
 
-\item{H}{Uncensored head count ratio is the proportion of the population that is multidimensionally deprived}
-\item{A}{Average deprivation share among poors}
-\item{M0}{Multidimensional Poverty Index}
-\item{DimentionalContribution}{Dimensional contributions data frame}
-\item{pov_df}{poverty data frame associated with each group}
+\item{H}{Uncensored head count ratio the proportion of the population that is multidimensionally deprived calculated by divide the number of poor people with the total number of people.}
+\item{A}{Average deprivation share among poor people, by aggregating the proportion of total deprivations each person and dividing by the total number of poor people.}
+\item{M0}{Multidimensional Poverty Index (MPI)}
+\item{DimentionalContribution}{Dimensional contributions denotes the magnitude of each indicators impact on MPI.}
+\item{pov_df}{poverty data frame associated with each group.\code{Cvector} is total deprived indicators. \code{IsPoverty} is a binary variable with only 1 and 0, with 1 indicating that person does not meet the threshold(poor person) and 0 indicating the opposite. \code{Intensity}, The intensity of a deprived indication among impoverished people is computed by dividing the number of deprived indicators by the total number of indicators.}
 }
 \description{
 Multidimensional Poverty Index using Alkire-Foster (AF) method
-which running in sequential mode
+computes in sequential mode
 }

@@ -19,9 +19,7 @@ library(kableExtra)
 
 ### Loading Data
 
-`MPI::examplePovertydf` is a simulation poverty data frame contains 16 indicators column which 1 means failed and 0 means passed
-
-And forth administrative regions of France in Region column
+`MPI::examplePovertydf` is a simulation poverty data frame contains 16 indicators column which 1 means deprived and 0 means not deprived, and simulated forth-level administrative division of France. 
 
 ```{r}
 data(examplePovertydf)
@@ -35,37 +33,41 @@ kable(head(examplePovertydf, n = 3),
 
 ### Calculation
 
-For calculating MPI using `AF_Seq` (for sequential run) or `AF_Par` (for parallel run)
+For calculating MPI using `AF_Seq` for sequential run or `AF_Par` for parallel run.
 ```{r}
 out_seq <- AF_Seq(examplePovertydf, g = "Region", k = 3)
 ```
 
 Output will be *list of lists* separated into group, and each list contains
-* groupname 
+
+* `groupname` 
 ```{r, echo=FALSE}
 out_seq[[1]]$groupname
 ```
 
-* H (Uncensored head count is the proportion of the population that is multidimensionally deprived) 
+* `H` Uncensored head count, the proportion of the population that is multidimensionally deprived calculated by divide the number of poor people with the total number of people. 
 ```{r, echo=FALSE}
 out_seq[[1]]$H
 ```
-* A (Average deprivation share among row)
+* `A` Average deprivation share among poor people, by aggregating the proportion of total deprivations each person and dividing by the total number of poor people.
 ```{r, echo=FALSE}
 out_seq[[1]]$A
 ```
-* M0 (Multidimensional Poverty Index) 
+* `M0` Multidimensional Poverty Index, calculated by H times A. 
 ```{r, echo=FALSE}
 out_seq[[1]]$M0
 ```
-* DimentionalContribution (Dimensional contributions) 
+* `DimentionalContribution` Dimensional contributions denotes the magnitude of each indicators impact on MPI. 
 ```{r outt1, results = 'asis', echo=FALSE}
 kable(out_seq[[1]]$DimentionalContribution, 
             "html",
             col.names = gsub("[.]", " ", names(out_seq[[1]]$DimentionalContribution))) %>%
   kable_styling()
 ```
-* pov_df (poverty data frame) 
+* `pov_df` poverty data frame 
+  + `Cvector` is total deprived indicators.
+  + `IsPoverty` is a binary variable with only 1 and 0, with 1 indicating that person does not meet the threshold(poor person) and 0 indicating the opposite.
+  + `Intensity` The intensity of a deprived indication among impoverished people is computed by dividing the number of deprived indicators by the total number of indicators.
 ```{r outt2, results = 'asis', echo=FALSE}
 kable(out_seq[[1]]$pov_df, 
             "html",
