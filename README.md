@@ -74,3 +74,10 @@ Citation
 Alkire S., Chatterjee, M., Conconi, A., Seth, S. and Ana Vaz (2014) Global Multidimensional Poverty Index 2014. OPHI Briefing 21, Oxford: University of Oxford. 
 
 Please, visit <a href="https://opendocs.ids.ac.uk/opendocs/handle/20.500.12413/11821">Global Multidimensional Poverty Index 2014</a>
+
+
+Contact
+----------------------------------------------------------------------------------
+* Developer: Kittiya Kukiattikun
+* <a href="https://www.nectec.or.th/en/research/dsaru/dsarg-sai.html">Strategic Analytics Networks with Machine Learning and AI (SAI)</a>, <a href="https://www.nectec.or.th/en/">NECTEC</a>, Thailand
+* Email: kittiya.contact@gmail.com
