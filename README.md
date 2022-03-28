@@ -20,7 +20,7 @@ Installation
 ----------------------------------------------------------------------------------
 You can install the newest version from Github.
 ```r
-devtools::install_github('/9POINTEIGHT/MPI')
+devtools::install_github('9POINTEIGHT/MPI')
 ``` 
 
 
@@ -39,7 +39,7 @@ out_seq <- AF_Seq(df = examplePovertydf, g = "Region", k = 3)
 ```
 Output will be `list of lists` separated into group, and each list contains
 * `groupname` 
-* `H`  Uncensored head count, the proportion of the population that is multidimensionally deprived calculated by divide the number of poor people with the total number of people.
+* `H`  Head count Ratio, the proportion of the population that is multidimensionally deprived calculated by dividing the number of poor people with the total number of people.
 * `A` Average deprivation share among poor people, by aggregating the proportion of total deprivations each person and dividing by the total number of poor people.
 * `M0` Multidimensional Poverty Index, calculated by H times A.
 
@@ -58,13 +58,13 @@ Output will be `list of lists` separated into group, and each list contains
 [1] 0.4090909
 ```
 
-* `DimentionalContribution` Dimensional contributions denotes the magnitude of each indicators impact on MPI.
+* `DimentionalContribution` Dimensional contributions denotes the magnitude of each indicator impacts on MPI.
 
 <img src="https://github.com/9POINTEIGHT/MPI/blob/master/man/FIG/DimentionalContribution.JPG?raw=true" width="250">
 
 * `pov_df` poverty data frame 
-  * `Cvector` is total deprived indicators.
-  * `IsPoverty` is a binary variable with only 1 and 0, with 1 indicating that person does not meet the threshold(poor person) and 0 indicating the opposite.
+  * `Cvector` is a vector of total values of deprived indicators adjusted by weight of indicators. Each element in Cvector represents a total value of each individual.
+  * `IsPoverty` is a binary variable (1 and 0). 1 indicates that a person does not meet the threshold (poor person) and 0 indicates the opposite.
   * `Intensity` , The intensity of a deprived indication among impoverished people is computed by dividing the number of deprived indicators by the total number of indicators.
 
 <img src="https://github.com/9POINTEIGHT/MPI/blob/master/man/FIG/pov_df.JPG?raw=true" width="1500">

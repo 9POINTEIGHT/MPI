@@ -6,17 +6,17 @@
 #' computes in parallel mode.
 #'
 #' @param df A poverty data frame
-#' @param g A groups(default as NULL)
+#' @param g A column name will be used to divide data into groups. When the value is NULL, the entire data is not separated into groups.(default as NULL)
 #' @param w An indicator weight vectors (default as 1)
-#' @param k A poverty cut-off (default as 1)
+#' @param k A poverty cut-off. If an aggregate value of indicators of a specific person is above or equal the value of k, then this person is considered to be a poor.(default as 1)
 #'
 #' @return returns a \code{list} of \code{list} contains
 #'
-#' \item{H}{Uncensored head count ratio the proportion of the population that is multidimensionally deprived calculated by divide the number of poor people with the total number of people.}
+#' \item{H}{Head count ratio, the proportion of the population that is multidimensionally deprived calculated by dividing the number of poor people with the total number of people.}
 #' \item{A}{Average deprivation share among poor people, by aggregating the proportion of total deprivations each person and dividing by the total number of poor people.}
 #' \item{M0}{Multidimensional Poverty Index (MPI)}
-#' \item{DimentionalContribution}{Dimensional contributions denotes the magnitude of each indicators impact on MPI.}
-#' \item{pov_df}{poverty data frame associated with each group.\code{Cvector} is total deprived indicators. \code{IsPoverty} is a binary variable with only 1 and 0, with 1 indicating that person does not meet the threshold(poor person) and 0 indicating the opposite. \code{Intensity}, The intensity of a deprived indication among impoverished people is computed by dividing the number of deprived indicators by the total number of indicators.}
+#' \item{DimentionalContribution}{Dimensional contributions denotes the magnitude of each indicator impacts on MPI.}
+#' \item{pov_df}{poverty data frame associated with each group.\code{Cvector} is a vector of total values of deprived indicators adjusted by weight of indicators. Each element in \code{Cvector} represents a total value of each individual. \code{IsPoverty} is a binary variable (1 and 0). 1 indicates that a person does not meet the threshold (poor person) and 0 indicates the opposite. \code{Intensity}, The intensity of a deprived indication among impoverished people is computed by dividing the number of deprived indicators by the total number of indicators.}
 #'
 #' @export
 
