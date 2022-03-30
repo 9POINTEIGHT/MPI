@@ -72,7 +72,7 @@ Output will be `list of lists` separated into group, and each list contains...
   * `CensoredHCount` Censored head count of indicator denotes the population that are multidimensionally poor and deprived in that indicator at the same time.
   * `CensoredHCount` Censored head count ratio of indicator denotes the proportion that is multidimensionally poor and deprived in that indicator at the same time.
 
-<img src="https://github.com/9POINTEIGHT/MPI/blob/master/man/FIG/DimentionalContribution.JPG?raw=true" width="250">
+<img src="https://github.com/9POINTEIGHT/MPI/blob/master/man/FIG/DimentionalContribution.JPG?raw=true" width="750">
 
 * `pov_df` poverty data frame 
   * `Cvector` is a vector of total values of deprived indicators adjusted by weight of indicators. Each element in Cvector represents a total value of each individual.
