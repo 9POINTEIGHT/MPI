@@ -37,7 +37,13 @@ We use the following function to compute MPI.
 ```r
 out_seq <- AF_Seq(df = examplePovertydf, g = "Region", k = 3)
 ```
-Output will be `list of lists` separated into group, and each list contains
+Input will be...
+* `df`  A poverty data frame
+* `g`  A column name that will be used to divide data into groups. When the value is NULL, the entire data is not separated into groups.(default as NULL)
+* `w`  An indicator weight vectors (default as 1)
+* `k`  A poverty cut-off. If an aggregate value of indicators of a specific person is above or equal the value of k, then this person is considered to be a poor.(default as 1)
+
+Output will be `list of lists` separated into group, and each list contains...
 * `groupname` 
 * `H`  Head count Ratio, the proportion of the population that is multidimensionally deprived calculated by dividing the number of poor people with the total number of people.
 * `A` Average deprivation share among poor people, by aggregating the proportion of total deprivations each person and dividing by the total number of poor people.
@@ -58,7 +64,13 @@ Output will be `list of lists` separated into group, and each list contains
 [1] 0.4090909
 ```
 
-* `DimentionalContribution` Dimensional contributions denotes the magnitude of each indicator impacts on MPI.
+* `DimentionalContribution` 
+  * `indnames` The poverty indicators
+  * `diCont` Dimensional contributions denotes the magnitude of each indicator impacts on MPI.
+  * `UncensoredHCount` Uncensored head count of indicator denotes the population that are deprived in that indicator.
+  * `UncensoredHRatio` Uncensored head count ratio of indicator denotes the proportion of the population deprived in that indicator.
+  * `CensoredHCount` Censored head count of indicator denotes the population that are multidimensionally poor and deprived in that indicator at the same time.
+  * `CensoredHCount` Censored head count ratio of indicator denotes the proportion that is multidimensionally poor and deprived in that indicator at the same time.
 
 <img src="https://github.com/9POINTEIGHT/MPI/blob/master/man/FIG/DimentionalContribution.JPG?raw=true" width="250">
 

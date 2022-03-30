@@ -38,9 +38,9 @@ For calculating MPI using `AF_Seq` for sequential run or `AF_Par` for parallel r
 Input will be 
 
 * `df` A poverty data frame
-* `g` A groups
+* `g` A column name that will be used to divide data into groups. When the value is NULL, the entire data is not separated into groups.
 * `w` An indicator weight vectors
-* `k` A poverty cut-off. If an aggregate value of indicators of a specific person is above or equal the value of k, then this person is considered to be a poor
+* `k` A poverty cut-off. If an aggregate value of indicators of a specific person is above or equal the value of k, then this person is considered to be a poor.(default as 1)
 ```{r}
 out_seq <- AF_Seq(examplePovertydf, g = "Region", k = 3)
 ```
@@ -64,7 +64,13 @@ out_seq[[1]]$A
 ```{r, echo=FALSE}
 out_seq[[1]]$M0
 ```
-* `DimentionalContribution` Dimensional contributions denotes the magnitude of each indicator impacts on MPI. 
+* `DimentionalContribution`
+  + `indnames` The poverty indicators
+  + `diCont` Dimensional contributions denotes the magnitude of each indicator impacts on MPI.
+  + `UncensoredHCount` Uncensored head count of indicator denotes the population that are deprived in that indicator.
+  + `UncensoredHRatio` Uncensored head count ratio of indicator denotes the proportion of the population deprived in that indicator.
+  + `CensoredHCount` Censored head count of indicator denotes the population that are multidimensionally poor and deprived in that indicator at the same time.
+  + `CensoredHCount` Censored head count ratio of indicator denotes the proportion that is multidimensionally poor and deprived in that indicator at the same time.
 ```{r outt1, results = 'asis', echo=FALSE}
 kable(out_seq[[1]]$DimentionalContribution, 
             "html",

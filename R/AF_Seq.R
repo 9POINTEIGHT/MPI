@@ -15,8 +15,14 @@
 #' \item{H}{Head count ratio, the proportion of the population that is multidimensionally deprived calculated by dividing the number of poor people with the total number of people.}
 #' \item{A}{Average deprivation share among poor people, by aggregating the proportion of total deprivations each person and dividing by the total number of poor people.}
 #' \item{M0}{Multidimensional Poverty Index (MPI)}
-#' \item{DimentionalContribution}{Dimensional contributions denotes the magnitude of each indicator impacts on MPI.}
+#' \item{DimentionalContribution}{\code{indnames} is poverty indicator vectors.\code{diCont} Dimensional contributions denotes the magnitude of each indicator impacts on MPI. \code{UncensoredHCount} Uncensored head count of indicator denotes the population that are deprived in that indicator. \code{UncensoredHRatio} Uncensored head count ratio of indicator denotes the proportion of the population deprived in that indicator.\code{CensoredHCount} Censored head count of indicator denotes the population that are multidimensionally poor and deprived in that indicator at the same time. \code{CensoredHCount} Censored head count ratio of indicator denotes the proportion that is multidimensionally poor and deprived in that indicator at the same time.}
 #' \item{pov_df}{poverty data frame associated with each group.\code{Cvector} is a vector of total values of deprived indicators adjusted by weight of indicators. Each element in \code{Cvector} represents a total value of each individual. \code{IsPoverty} is a binary variable (1 and 0). 1 indicates that a person does not meet the threshold (poor person) and 0 indicates the opposite. \code{Intensity}, The intensity of a deprived indication among impoverished people is computed by dividing the number of deprived indicators by the total number of indicators.}
+#'
+#' @examples
+#'
+#' # Run this function
+#'
+#' output <- MPI::AF_Seq(df = MPI::examplePovertydf, g = "Region")
 #'
 #' @export
 AF_Seq <- function(df, g = NULL,
@@ -24,13 +30,17 @@ AF_Seq <- function(df, g = NULL,
                   k = 1){
   vars_list <- prepare_var(df, g , w)
 
+  # get indicator name
+  indnames <- names(vars_list$dflist[[1]])
+
   out <- list()
+
   for(i in seq(length(vars_list$dflist))){
 
     pov_df <- data.frame(mapply(`*`,
-                               vars_list$dflist[[i]],
-                               vars_list$weight,
-                               SIMPLIFY=FALSE)) %>%
+                                vars_list$dflist[[i]],
+                                vars_list$weight,
+                                SIMPLIFY=FALSE)) %>%
       mutate(Cvector = rowSums(.)) %>%
       mutate(IsPoverty = ifelse(.$Cvector >= k, 1 , 0)) %>%
       mutate(Intensity = .$Cvector * .$IsPoverty / vars_list$n_Ind)
@@ -40,6 +50,21 @@ AF_Seq <- function(df, g = NULL,
     # censored headcount
     CHeadCount <- sum(pov_df$IsPoverty)
 
+    # number of indicators
+    nindicator <- ncol(pov_df) - 3
+
+    # uncensored and censored headcount of each indicator
+    HcountRatio <- pov_df[1:nindicator] %>%
+      colSums() %>%
+      as.data.frame() %>%
+      setNames("UncensoredHCounts") %>%
+      mutate(UncensoredHRatio = .data$UncensoredHCounts/nrowDf) %>%
+      mutate(mutate(pov_df[1:nindicator] * pov_df$IsPoverty) %>%
+               colSums() %>%
+               as.data.frame() %>%
+               setNames("CensoredHCounts") %>%
+               mutate(CensoredHRatio = .data$CensoredHCounts/nrowDf))
+
     # censored headcount ratio
     H <- CHeadCount/ nrowDf
     # average intensity among criteria data
@@ -48,15 +73,19 @@ AF_Seq <- function(df, g = NULL,
     M0 <- H * A
 
     # censored headcount ratio of each indicator
-    Hj <- ((pov_df[,1:vars_list$n_Ind] * pov_df[, "IsPoverty"]) %>% colSums() ) *
-      if_else(vars_list$weight == 0, 0, 1) / nrowDf
-    diCont <- (vars_list$weight/vars_list$sum.w) * (Hj / M0)
+    diCont <- (vars_list$weight/vars_list$sum.w) * (HcountRatio$CensoredHRatio / M0) %>%
+      as.data.frame() %>%
+      setNames("diCont")
+
+    diCont <- diCont %>% mutate(HcountRatio)
+    diCont <- cbind(indnames,diCont)
 
     out[i] <- list(list(groupname = names(vars_list$dflist[i]),
                         H = H, A = A, M0 = M0,
-                        DimentionalContribution = as.data.frame(diCont),
+                        DimentionalContribution = diCont,
                         pov_df = pov_df))
   }
+
   return(out)
 
 }
