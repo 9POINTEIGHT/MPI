@@ -70,7 +70,7 @@ Output will be `list of lists` separated into group, and each list contains...
   * `UncensoredHCount` Uncensored head count of indicator denotes the population that are deprived in that indicator.
   * `UncensoredHRatio` Uncensored head count ratio of indicator denotes the proportion of the population deprived in that indicator.
   * `CensoredHCount` Censored head count of indicator denotes the population that are multidimensionally poor and deprived in that indicator at the same time.
-  * `CensoredHCount` Censored head count ratio of indicator denotes the proportion that is multidimensionally poor and deprived in that indicator at the same time.
+  * `CensoredHRatio` Censored head count ratio of indicator denotes the proportion that is multidimensionally poor and deprived in that indicator at the same time.
 
 <img src="https://github.com/9POINTEIGHT/MPI/blob/master/man/FIG/DimentionalContribution.JPG?raw=true" width="750">
 

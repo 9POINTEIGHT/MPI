@@ -47,9 +47,19 @@ out_seq <- AF_Seq(examplePovertydf, g = "Region", k = 3)
 
 Output will be *list of lists* separated into group, and each list contains
 
-* `groupname` 
+* `groupname`  A Grouped value from column input `g`
 ```{r, echo=FALSE}
 out_seq[[1]]$groupname
+```
+
+* `total`  Number of population in each group
+```{r, echo=FALSE}
+out_seq[[1]]$total
+```
+
+* `poors`  Number of deprived people in each group
+```{r, echo=FALSE}
+out_seq[[1]]$poors
 ```
 
 * `H` Head count ratio, the proportion of the population that is multidimensionally deprived calculated by divide the number of poor people with the total number of people. 
@@ -70,7 +80,7 @@ out_seq[[1]]$M0
   + `UncensoredHCount` Uncensored head count of indicator denotes the population that are deprived in that indicator.
   + `UncensoredHRatio` Uncensored head count ratio of indicator denotes the proportion of the population deprived in that indicator.
   + `CensoredHCount` Censored head count of indicator denotes the population that are multidimensionally poor and deprived in that indicator at the same time.
-  + `CensoredHCount` Censored head count ratio of indicator denotes the proportion that is multidimensionally poor and deprived in that indicator at the same time.
+  + `CensoredHRatio` Censored head count ratio of indicator denotes the proportion that is multidimensionally poor and deprived in that indicator at the same time.
 ```{r outt1, results = 'asis', echo=FALSE}
 kable(out_seq[[1]]$DimentionalContribution, 
             "html",

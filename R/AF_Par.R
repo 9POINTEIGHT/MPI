@@ -12,10 +12,13 @@
 #'
 #' @return returns a \code{list} of \code{list} contains
 #'
+#' \item{groupname}{A Grouped value from column input `g`}
+#' \item{total}{Number of population in each group}
+#' \item{poors}{Number of deprived people in each group}
 #' \item{H}{Head count ratio, the proportion of the population that is multidimensionally deprived calculated by dividing the number of poor people with the total number of people.}
 #' \item{A}{Average deprivation share among poor people, by aggregating the proportion of total deprivations each person and dividing by the total number of poor people.}
 #' \item{M0}{Multidimensional Poverty Index (MPI)}
-#' \item{DimentionalContribution}{\code{indnames} is poverty indicator vectors.\code{diCont} Dimensional contributions denotes the magnitude of each indicator impacts on MPI. \code{UncensoredHCount} Uncensored head count of indicator denotes the population that are deprived in that indicator. \code{UncensoredHRatio} Uncensored head count ratio of indicator denotes the proportion of the population deprived in that indicator.\code{CensoredHCount} Censored head count of indicator denotes the population that are multidimensionally poor and deprived in that indicator at the same time. \code{CensoredHCount} Censored head count ratio of indicator denotes the proportion that is multidimensionally poor and deprived in that indicator at the same time.}
+#' \item{DimentionalContribution}{\code{indnames} is poverty indicator vectors.\code{diCont} Dimensional contributions denotes the magnitude of each indicator impacts on MPI. \code{UncensoredHCount} Uncensored head count of indicator denotes the population that are deprived in that indicator. \code{UncensoredHRatio} Uncensored head count ratio of indicator denotes the proportion of the population deprived in that indicator.\code{CensoredHCount} Censored head count of indicator denotes the population that are multidimensionally poor and deprived in that indicator at the same time. \code{CensoredHRatio} Censored head count ratio of indicator denotes the proportion that is multidimensionally poor and deprived in that indicator at the same time.}
 #' \item{pov_df}{poverty data frame associated with each group.\code{Cvector} is a vector of total values of deprived indicators adjusted by weight of indicators. Each element in \code{Cvector} represents a total value of each individual. \code{IsPoverty} is a binary variable (1 and 0). 1 indicates that a person does not meet the threshold (poor person) and 0 indicates the opposite. \code{Intensity}, The intensity of a deprived indication among impoverished people is computed by dividing the number of deprived indicators by the total number of indicators.}
 #'
 #' @examples
@@ -84,7 +87,8 @@ AF_Par <- function(df, g = NULL,
     diCont <- diCont %>% mutate(HcountRatio)
     diCont <- cbind(indnames,diCont)
 
-    list(groupname = names(vars_list$dflist[i]), H = H, A = A, M0 = M0,
+    list(groupname = names(vars_list$dflist[i]),
+         total = nrowDf, poors = CHeadCount,H = H, A = A, M0 = M0,
          DimentionalContribution = diCont,
          pov_df = pov_df)
   }
