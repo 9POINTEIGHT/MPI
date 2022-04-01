@@ -44,7 +44,9 @@ Input will be...
 * `k`  A poverty cut-off. If an aggregate value of indicators of a specific person is above or equal the value of k, then this person is considered to be a poor.(default as 1)
 
 Output will be `list of lists` separated into group, and each list contains...
-* `groupname` 
+* `groupname`  A Grouped value from column input `g`
+* `total`  Number of population in each group
+* `poors`  Number of deprived people in each group
 * `H`  Head count Ratio, the proportion of the population that is multidimensionally deprived calculated by dividing the number of poor people with the total number of people.
 * `A` Average deprivation share among poor people, by aggregating the proportion of total deprivations each person and dividing by the total number of poor people.
 * `M0` Multidimensional Poverty Index, calculated by H times A.
@@ -53,6 +55,12 @@ Output will be `list of lists` separated into group, and each list contains...
 [[1]]
 [[1]]$groupname
 [1] "Bastia"
+
+[[1]]$total
+[1] 2
+
+[[1]]$poors
+[1] 2
 
 [[1]]$H
 [1] 1
@@ -91,5 +99,5 @@ Please, visit <a href="https://opendocs.ids.ac.uk/opendocs/handle/20.500.12413/1
 Contact
 ----------------------------------------------------------------------------------
 * Developer: Kittiya Kukiattikun
-* <a href="https://www.nectec.or.th/en/research/dsaru/dsarg-sai.html">Strategic Analytics Networks with Machine Learning and AI (SAI)</a>, <a href="https://www.nectec.or.th/en/">NECTEC</a>, Thailand
+* <a href="https://www.nectec.or.th/en/research/dsarg/dsarg.html">Strategic Analytics Networks with Machine Learning and AI (SAI)</a>, <a href="https://www.nectec.or.th/en/">NECTEC</a>, Thailand
 * Email: kittiya.contact@gmail.com
