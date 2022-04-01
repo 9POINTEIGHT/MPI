@@ -11,7 +11,7 @@
 # R-hub platforms 
 There are 2 NOTES
 
-The first NOTE, which appears in all R-hub platforms, is because this package is the new submission on CRAN.
+The first NOTE, which appears in all R-hub and win-builder, is because this package is the new submission on CRAN.
 ```r
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: 'Kittiya Kukiattikun <kittiya.contact@gmail.com>'
